@@ -49,10 +49,14 @@ X_test.drop(labels='date', axis=True, inplace=True)
 
 # --- Model Building ---
 # Linear Regression Model
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train,y_train)
+#from sklearn.linear_model import LinearRegression
+#regressor = LinearRegression()
+#regressor.fit(X_train,y_train)
+
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=10000,n_jobs=1,random_state=14)
+clf.fit(X_train,y_train)
 
 # Creating a pickle file for the classifier
 filename = 'first-innings-score-lr-model.pkl'
-pickle.dump(regressor, open(filename, 'wb'))
+pickle.dump(clf, open(filename, 'wb'))
